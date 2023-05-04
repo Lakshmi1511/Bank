@@ -1,0 +1,58 @@
+Decorators
+----------
+@- is used to denote Decorators
+-used to define metadatas
+
+Lifecycle of Angular
+--------------------
+constructoe->ngOnInit->Other methods
+
+Data Binding 
+------------
+ts               -html
+componenet       -View
+
+One way Data Binding
+-----------------------
+
+1.1 Component to view data sharing
+-----------------------------------
+   1.1.1 - String Interpolation {{binfingData}}
+   1.1.2 -property Binding [propertyName]="bindingData
+
+1.2 View to Component data sharing
+----------------------------------
+    1.2.1 - Event Binding (eventName)='methodName()' eg:click
+    1.2.2 - $event binding (eventName)='methodName($event)' eg:change
+    1.2.3 - databinding with template rendering variable #variable
+
+2- Two Way Data Binding
+-----------------------
+-FormsModule  - module
+
+2.1 ngModel [(ngModel)]="variable"
+
+package-collection of modules (folder)
+module- collection of class (file)
+class- collection of variables and methods
+
+Angular Services
+----------------
+- ng g s serviceFileName
+
+Dependency Injection
+--------------------
+--> to use methods and data from one class to another class
+constructor(accessSpecifier reference:className){
+
+}
+         private 
+         public 
+
+Angular Routing
+----------------
+AppRoutingModule - Module used to redirect
+Router           - class
+navigateByUrl()  - method
+
+href  - routerLink

@@ -10,6 +10,9 @@ export class LoginComponent implements OnInit {
    data="Your perfect banking partner"
    placeHolderData="enter acno"
 
+   uname:any
+   psw:any
+
   constructor(){ }
   ngOnInit(): void {
      

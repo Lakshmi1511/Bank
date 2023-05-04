@@ -17,12 +17,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
      
   }
-  login(){
-    console.log("this.uname,this.psw");
-    //alert(this.ds.sdata)
-    //alert(this.ds.checkData())
+  login(a:any,b:any){
+   // console.log(a.value,b.value);
+    this.uname=a.value
+    this.psw=b.value
+    console.log(this.uname,this.psw);
+    
+    alert("login clicked")
+    
   }
-  unameChange(event:any){
-  console.log(event.target.value);
-  }
+
 }

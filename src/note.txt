@@ -28,6 +28,7 @@ One way Data Binding
 
 2- Two Way Data Binding
 -----------------------
+----------------------- 
 -FormsModule  - module
 
 2.1 ngModel [(ngModel)]="variable"

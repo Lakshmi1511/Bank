@@ -1,3 +1,104 @@
-<h1>Welcome</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error aperiam, maiores itaque iusto perspiciatis possimus libero deserunt architecto nihil reprehenderit corporis culpa assumenda eligendi doloremque eum nemo distinctio natus. Velit?</p>
-<button>Read more</button>
+<div class="row mt-3 ms-5 ">
+    <div class="col-6 text-center p-2" style="background-color: rgb(138 182 205);border-radius: 20px;">
+        <h1>Welcome {{user}}</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error aperiam, maiores itaque iusto perspiciatis
+            possimus
+            libero deserunt architecto nihil reprehenderit corporis culpa assumenda eligendi doloremque eum nemo
+            distinctio natus. Velit?
+        </p>
+        <img src="../assets/bank.png" width="340" height="330">
+    </div>
+    <div class="col-6">
+                <button [ngClass]="Dacno?'cc':''" (click)="getBalance()" id="b" class="btn btn-primary w-75 btn-lg mb-2" style="background-color: #1074a5;" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    Balance Enquiry
+                </button>
+                <button [ngClass]="Dacno?'cc':''" (click)="acView()" class="btn btn-primary w-75 btn-lg mb-2" style="background-color: #1074a5;" type="button" 
+                data-bs-toggle="modal" data-bs-target="#exampleModal">ViewAccount Details</button>
+                <button [ngClass]="Dacno?'cc':''" class="btn btn-primary w-75 btn-lg mb-2" style="background-color: #1074a5;" type="button" 
+                data-bs-toggle="modal" data-bs-target="#exampleModal1">Send Money</button>
+                <a href="/transaction">
+                    <button [ngClass]="Dacno?'cc':''" class="btn btn-primary w-75 btn-lg mb-2" style="background-color: #1074a5;" type="button">Account Statement</button>
+                </a>
+                <button [ngClass]="Dacno?'cc':''" class="btn btn-primary w-75 btn-lg mb-2" style="background-color: #1074a5;" type="button"
+                (click)="deleteClick()">Delete Account</button>
+
+                <app-delete (onDelete)="yesDelete($event)" (onCancel)="NoDelete()" [childAcno]="Dacno"></app-delete>
+            <div class="list-group-item border border-0 text-end mb-5">
+                <button [ngClass]="Dacno?'cc':''" (click)="logout()" class="btn btn-outline-warning me-4">logout</button>
+            </div>
+        
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+         aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+              <h3 class="offcanvas-title" id="offcanvasExampleLabel"><strong>Hey {{user}} !</strong></h3>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div>
+                <p class="p-1 fs-5">Account Number: {{acno}}</p>
+                <p class="p-1 fs-5">Your current account balance is 
+                 <strong>Rs.{{balance}}</strong>  </p>
+              </div>
+            </div>
+    </div>
+
+    <!-- <div class="d-grid gap-2 col-6"> -->
+
+  
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" 
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+                 
+        <div class="modal-body">
+            <div class="text-center">
+                <img src="https://i.postimg.cc/Pr5dVv2w/imgbin-computer-icons-avatar-user-login-png.png" class="w-50">
+            </div>
+        <h1 class="text-center">{{user}}</h1>
+          <h3>Account Number: {{acno}}</h3>
+          <h3>AccountHolder Name: {{user}}</h3>
+        </div>
+        <div class="modal-footer" style="background-color: #1074a5;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+            <div class="text-center">
+                <img src="https://i.postimg.cc/pXBNTw0P/money-transfer-icon-40389.png">
+            </div>
+          <h1>Money Transfer</h1>
+          <form (ngSubmit)="fundTransfer()" [formGroup]="moneyTransferForm" action="">
+            <!-- input.form.control#f$*3  -->
+            <input formControlName="toAcno" type="text" class="mb-2 form-control" id="f1" name="toacno" placeholder="To Account Number">
+            <div *ngIf="(this.moneyTransferForm.get('toAcno')?.errors)&&(this.moneyTransferForm.get('toAcno')?.touched)">
+                <p class="text-danger">must contain numbers only</p>
+            </div>
+            <input formControlName="amount" type="text" class="mb-2 form-control" id="f2" name="amnt" placeholder="Amount">
+            <div *ngIf="(this.moneyTransferForm.get('amount')?.errors)&&(this.moneyTransferForm.get('amount')?.touched)">
+                <p class="text-danger">must contain numbers only</p>
+            </div>
+            <input formControlName="psw" type="password" class="mb-2 form-control" id="f3" name="pswd1" placeholder="Password">
+            <div *ngIf="(this.moneyTransferForm.get('psw')?.errors)&&(this.moneyTransferForm.get('psw')?.touched)">
+                <p class="text-danger">must contain characters and numbers only</p>
+            </div>
+            <button class="btn btn-info w-25 mt-4" type="submit">Transfer</button>
+        </form>
+        </div>
+        <div class="text-center" style="background-color: #1074a5;">
+            <p [ngClass]="tStatus?'s1':'s2'" class="fs-4">{{transactionStatus}}</p>
+          <button type="submit" class="btn btn-secondary mb-2 p-2" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -58,3 +58,91 @@ navigateByUrl()  - method
 
 href  - routerLink
 
+Form creation in Angular
+------------------------
+1. template driven form
+2. Reactive Form
+
+Reactive Form
+-------------
+Create A form model in ts
+ReactiveFormsModeule - module used to create model form
+FormBuilder-class 
+
+Model contain--group,array,control
+Regular expression
+------------------
+used to create validation rules
+['rules']
+
+a-z      -small letters
+^a-z     -no small letters
+a-zA-Z   -capital and small
+0-9      -numbers 
+\w       -words        
+\W       -except words ^0-9a-zA-z
+
+quantifiers
+-----------
+* min=0   max=infinite
++ min=1   max=infinite
+
+eg: KL07FD1234
+   '[K][L][0-9]{2}[A-Z]{2}[0-9]{4}
+
+Directives
+----------
+ 1- Component Directive
+ 2- Structal Directive  *ngIf *ngFor
+ 3- Atribute Dierective ngClass
+
+API creation in angular
+-----------------------
+HttpClientModule - module
+HttpClient       - class
+
+methods - 
+          get
+          post
+          put
+          patch
+          delete
+
+Asynchronous method handling in ts
+----------------------------------
+js-promise-then()
+          -catch()
+
+ts-observable - subscribe()
+              - catch()
+              
+Fund Transfer
+Balance check
+Transaction history
+View profile
+Delete Account
+Logout
+
+Angular Pipes
+-------------
+Used to transform data formats
+
+Parent Child Communication
+--------------------------
+
+parent to Child
+---------------
+@Input - decorator used to share data from parent to child
+
+child to parent
+---------------
+@Output - decorator used to share data from child to parent
+
+event creation
+--------------
+
+
+Pipe creation
+-------------
+
+ng g pipe pipeName

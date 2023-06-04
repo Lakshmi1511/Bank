@@ -1,23 +1,30 @@
-<h3 class="p-1 ">{{data}}</h3>
+<h3 class="p-1 "><marquee>{{data}}</marquee></h3>
 <div class="w-50 p-5 text-center">
-<h1 class="text-center mt-5 " style="color: #00315c">Sign In</h1>
+    <h1 class="text-center mt-5 " style="color: #00315c">Sign In</h1>
 
-<form style="background-color: rgb(138 182 205);border-radius: 20px;" action=""
-    class="mt-2 p-3 container text-center border">
-    
-    <div class="p-2 mt-2">
-        <input [(ngModel)]="uname" id="u1" name="uname" type="text" style="border: none;" class="form-control mt-2 p-2" [placeholder]="placeHolderData">
-    </div>
-    
-    <div class="p-2 mt-2">
-        <input [(ngModel)]="psw" id="p1" name="password" type="password" class="form-control mt-2 p-2" placeholder="enter password">
-    </div>
-    <button (click)="login()" type="submit" class="btn btn-info mt-4 p-2">login</button>
-    
-    <p class="mt-2" style="color: rgb(250,250,250);">
-        don`t have account?
-        <a style="text-decoration: none; color: white;" routerLink="register">
-        <strong>create account</strong></a>
-    </p>
-</form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" style="background-color: rgb(138 182 205);border-radius: 20px;" action=""
+        class="mt-2 p-3 container text-center border">
+
+        <div class="p-2 mt-2">
+            <input id="u1" formControlName="acno" name="acno" type="text" style="border: none;"
+                class="form-control mt-2 p-2" [placeholder]="placeHolderData">
+        </div>
+        <div *ngIf="(this.loginForm.get('acno')?.errors)&&(this.loginForm.get('acno')?.touched)">
+            <p class="text-danger">must contain numbers only</p>
+        </div>
+        <div class="p-2 mt-2">
+            <input formControlName="psw" id="p1" name="password" type="password" class="form-control mt-2 p-2"
+                placeholder="enter password"/>
+        </div>
+        <div *ngIf="(this.loginForm.get('psw')?.errors)&&(this.loginForm.get('psw')?.touched)">
+            <p class="text-danger">must contain characters and numbers only</p>
+        </div>
+        <button (click)="login()" type="button" class="btn btn-info mt-4 p-2">login</button>
+
+        <p class="mt-2" style="color: rgb(250,250,250);">
+            don`t have account?
+            <a style="text-decoration: none; color: white;" routerLink="register">
+                <strong>create account</strong></a>
+        </p>
+    </form>
 </div>

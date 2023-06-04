@@ -2,10 +2,15 @@
 body{
     background-image: url("./assets/background.jpg");
      background-size: cover;
+     overflow: hidden;
+     margin: 0;
 }
 form{
     transition:.5s ease-in-out ;
 }
 form:hover{
     transform: scale(1.03);
+}
+.cc{
+    display: none;
 }
